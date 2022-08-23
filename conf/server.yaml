@@ -1,0 +1,26 @@
+
+# deamon 守护进程监听的端口
+SrvRpcx:
+    addr: "192.168.31.86:10801"
+    Frame: 100 # 100 ms 每帧
+
+# 守护进程 执行的命令集合
+Commands:
+    # docker 类守护进程
+    docker:
+        -
+            ID: 1
+            Name: "tiandi-meta"
+            Open: true
+            CheckCmd: "docker ps | grep tiandi-meta"
+            CheckValue : "tiandi-meta" # 检查输出字符包含 此  则表示服务OK
+            RestartBefore : "docker logs tiandi-meta"
+            Restart: "docker restart tiandi-meta"
+        -
+            ID: 2
+            Name: "tiandi-login"
+            Open: false
+            CheckCmd: "docker ps | grep tiandi-login"
+            CheckValue: "tiandi-login"
+            RestartBefore: "docker logs tiandi-login"
+            Restart: "docker restart tiandi-login"

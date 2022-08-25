@@ -12,15 +12,21 @@ Commands:
             ID: 1
             Name: "tiandi-meta"
             Open: true
+            Mode: "empty" # bash  sh  empty
             CheckCmd: "docker ps | grep tiandi-meta"
             CheckValue : "tiandi-meta" # 检查输出字符包含 此  则表示服务OK
             RestartBefore : "docker logs tiandi-meta"
             Restart: "docker restart tiandi-meta"
+            Start: ""
+            Stop: ""
         -
             ID: 2
             Name: "tiandi-login"
             Open: false
+            Mode: "empty" # bash  sh  empty
             CheckCmd: "docker ps | grep tiandi-login"
             CheckValue: "tiandi-login"
             RestartBefore: "docker logs tiandi-login"
             Restart: "docker restart tiandi-login"
+            Start : ""
+            Stop : ""

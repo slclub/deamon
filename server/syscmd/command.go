@@ -12,7 +12,11 @@ func BashCmd(cmd string, shell bool) (string, error) {
 	if shell {
 		return RunCmd("/bin/bash", "-c", cmd)
 	}
-	return RunCmd(cmd)
+	cmds := strings.Split(cmd, " ")
+	if len(cmds) == 1 {
+		return RunCmd(cmd)
+	}
+	return RunCmd(cmds[0], cmds[1:]...)
 }
 
 func RunCmd(name string, args ...string) (string, error) {

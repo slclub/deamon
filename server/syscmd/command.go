@@ -29,7 +29,11 @@ func RunCmd(name string, args ...string) (string, error) {
 	err := cmd.Run()
 	if err != nil {
 		args = append([]string{name}, args...)
-		logger.Log().Printf("SERVER.COMMAND.RUN.CMD-FAIL  CMD:%v  ERROR: %v ; %v", strings.Join(args, " "), err, stderr.String())
+		err_info := "ERROR"
+		if out.String() == "" { // 此种情况，且exit code 1; 算是正确的一种
+			err_info = "WARN"
+		}
+		logger.Log().Printf("SERVER.COMMAND.RUN.CMD-FAIL : %v  CMD:%v  output: %v ; %v", err_info, strings.Join(args, " "), err, stderr.String())
 		//return &out
 	}
 	return out.String(), err

@@ -47,3 +47,13 @@ func _load_server() {
 	}
 	Server = &srvyaml
 }
+
+func GetDockerItem(name string) *DockerItem {
+	//docker_item := DockerItem{}
+	for i := 0; i < len(Server.Commands.Docker); i++ {
+		if Server.Commands.Docker[i].Name == name {
+			return &Server.Commands.Docker[i]
+		}
+	}
+	return nil
+}

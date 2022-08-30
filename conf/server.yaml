@@ -3,6 +3,12 @@
 SrvRpcx:
     addr: "192.168.31.86:10801"
     Frame: 100 # 100 ms 每帧
+Log:
+    debug: true
+    log_level: 0
+    log_rel_path: "logs"
+    log_abs_path: ""
+    log_name: "glog"
 
 # 守护进程 执行的命令集合
 Commands:
@@ -17,8 +23,8 @@ Commands:
             CheckValue : "tiandi-meta" # 检查输出字符包含 此  则表示服务OK
             RestartBefore : "docker logs tiandi-meta"
             Restart: "docker restart tiandi-meta"
-            Start: ""
-            Stop: ""
+            Start: "docker start tiandi-meta"
+            Stop: "docker stop tiandi-meta"
         -
             ID: 2
             Name: "tiandi-login"
@@ -28,5 +34,5 @@ Commands:
             CheckValue: "tiandi-login"
             RestartBefore: "docker logs tiandi-login"
             Restart: "docker restart tiandi-login"
-            Start : ""
-            Stop : ""
+            Start : "docker start tiandi-login"
+            Stop : "docker stop tiandi-login"

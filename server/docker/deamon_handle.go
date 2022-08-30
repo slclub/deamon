@@ -9,16 +9,6 @@ import (
 	"strings"
 )
 
-type Request struct {
-	ServName string
-	ServID   int
-}
-
-type Response struct {
-	MsgCode int
-	Desc    string
-}
-
 // 定时100 S 更新一次yaml watch
 // 1000 帧 执行一次
 func TickReloadYamlHandle() func() {

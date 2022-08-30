@@ -22,3 +22,7 @@ func Printf(format string, args ...any) {
 func Print(args ...any) {
 	_log.Print(args...)
 }
+
+func init() {
+	_log = Log(New())
+}

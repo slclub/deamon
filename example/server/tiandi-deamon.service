@@ -1,0 +1,12 @@
+[Unit]
+Description=deamon for tiandi service
+After=syslog.target tiandi-deamon.service sntp.service
+
+[Service]
+ExecStart=/root/docker-defined/six/server/tiandi-deamon $OPTION
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
